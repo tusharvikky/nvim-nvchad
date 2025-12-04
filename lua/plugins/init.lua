@@ -13,6 +13,27 @@ return {
     end,
   },
 
+  -- opencode.nvim - AI assistant integration
+  {
+    "NickvanDyke/opencode.nvim",
+    lazy = false,
+    dependencies = {
+      -- Recommended for `ask()` and `select()`.
+      -- Required for `snacks` provider.
+      {
+        "folke/snacks.nvim",
+        opts = {
+          input = {},
+          picker = {},
+          terminal = {},
+        },
+      },
+    },
+    config = function()
+      require "configs.opencode"
+    end,
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
