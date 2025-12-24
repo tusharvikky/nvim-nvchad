@@ -7,7 +7,6 @@ A feature-rich Neovim configuration based on [NvChad v2.5](https://github.com/Nv
 - 🐍 **Python** debugging with conda environment support
 - 🎨 **Vue.js** debugging with Vite dev server
 - 🅰️ **Angular** debugging with ng serve
-- 🐘 **PHP** debugging with Xdebug
 - 🤖 **AI Assistant** integration via opencode.nvim
 - 📝 **LSP** support for HTML, CSS, and more
 - 🎯 **Code formatting** with conform.nvim
@@ -21,7 +20,6 @@ Before installing, ensure you have:
 - **Node.js** >= 18.x and npm (for JavaScript debugging)
 - **Python 3** (for Python debugging)
 - **Conda** (optional, for Python environment management)
-- **PHP** with Xdebug (for PHP debugging)
 - A [Nerd Font](https://www.nerdfonts.com/) installed and set in your terminal
 
 ## 🚀 Installation
@@ -103,49 +101,6 @@ export default {
 #### For Angular projects:
 
 Source maps are enabled by default in development mode.
-
-### PHP Debugging
-
-#### 1. Install Xdebug:
-
-**macOS:**
-```bash
-pecl install xdebug
-```
-
-**Ubuntu/Debian:**
-```bash
-sudo apt-get install php-xdebug
-```
-
-#### 2. Configure Xdebug:
-
-Add to `php.ini` or create `/etc/php/conf.d/xdebug.ini`:
-
-```ini
-[xdebug]
-zend_extension=xdebug.so
-xdebug.mode=debug
-xdebug.start_with_request=yes
-xdebug.client_port=9003
-xdebug.client_host=localhost
-```
-
-#### 3. Restart PHP/web server:
-
-```bash
-# For PHP-FPM
-sudo systemctl restart php-fpm
-
-# For Apache
-sudo systemctl restart apache2
-```
-
-#### 4. Verify Xdebug:
-
-```bash
-php -m | grep xdebug
-```
 
 ### OpenCode AI Assistant (Optional)
 
@@ -243,21 +198,6 @@ nvim src/App.vue
 # 5. Select "Launch Vite (Vue.js)"
 ```
 
-### Debugging PHP
-
-```bash
-# 1. Ensure Xdebug is running
-php -m | grep xdebug
-
-# 2. Open Neovim
-nvim index.php
-
-# 3. Set breakpoints with <Space>db
-# 4. Start debugging with <Space>dc
-# 5. Select "Listen for Xdebug"
-# 6. Trigger your PHP script (browser/CLI)
-```
-
 ## 🗂️ Project Structure
 
 ```
@@ -273,7 +213,7 @@ nvim index.php
 │   │   ├── lspconfig.lua   # LSP servers
 │   │   ├── lazy.lua        # Lazy.nvim settings
 │   │   ├── opencode.lua    # OpenCode AI config
-│   │   ├── dap.lua         # Core DAP + PHP
+│   │   ├── dap.lua         # Core DAP configuration
 │   │   ├── dap-ui.lua      # Debug UI
 │   │   ├── dap-python.lua  # Python debugging
 │   │   └── dap-js.lua      # JS/TS/Vue/Angular
@@ -307,12 +247,6 @@ npm install --legacy-peer-deps
 npx gulp vsDebugServerBundle
 mv dist out
 ```
-
-### PHP debugger not connecting
-
-1. Verify Xdebug is loaded: `php -m | grep xdebug`
-2. Check Xdebug port: `php -i | grep xdebug.client_port`
-3. Update port in `lua/configs/dap.lua` if needed
 
 ### OpenCode keybindings not working
 

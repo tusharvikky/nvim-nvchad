@@ -73,11 +73,6 @@ return {
           require "configs.dap-js"
         end,
       },
-      -- PHP adapter
-      {
-        "xdebug/vscode-php-debug",
-        build = "npm install && npm run build",
-      },
     },
     config = function()
       require "configs.dap"
@@ -85,7 +80,7 @@ return {
   },
 
   -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  { import = "nvchad.blink.lazyspec" },
 
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",

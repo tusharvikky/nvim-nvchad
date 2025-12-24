@@ -7,33 +7,6 @@ vim.fn.sign_define("DapBreakpointRejected", { text = "🚫", texthl = "DapBreakp
 vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "DapStopped", linehl = "DapStoppedLine", numhl = "" })
 vim.fn.sign_define("DapLogPoint", { text = "📝", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
--- PHP Xdebug configuration
-dap.adapters.php = {
-  type = "executable",
-  command = "node",
-  args = { vim.fn.stdpath "data" .. "/lazy/vscode-php-debug/out/phpDebug.js" },
-}
-
-dap.configurations.php = {
-  {
-    type = "php",
-    request = "launch",
-    name = "Listen for Xdebug",
-    port = 9003, -- Xdebug 3 default port (use 9000 for Xdebug 2)
-    pathMappings = {
-      ["/var/www/html"] = "${workspaceFolder}", -- Adjust for your Docker/server setup
-    },
-  },
-  {
-    type = "php",
-    request = "launch",
-    name = "Launch currently open script",
-    program = "${file}",
-    cwd = "${workspaceFolder}",
-    port = 9003,
-  },
-}
-
 -- Keymaps for debugging
 local map = vim.keymap.set
 
